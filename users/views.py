@@ -6,6 +6,8 @@ from blog.models import *
 from . models import *
 import openpyxl
 
+
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -94,4 +96,17 @@ def get_data(request):
 	wb.save(response)
 	return response
 
-#oauth baki hai bas ab templates k sath
+@login_required
+def add_subscription(request, *args, **kwargs):
+    id = request.POST.get('post_author_profile_id')
+    profile = Profile.objects.get(id=id)
+    request.user.profile.subscription.add(profile)
+    return redirect('blog-home')
+
+@login_required
+def cancel_subscription(request, *args, **kwargs):
+    id = request.POST.get('post_author_profile_id')
+    profile = Profile.objects.get(id=id)
+    request.user.profile.subscription.remove(profile)
+    return redirect('blog-home')    
+

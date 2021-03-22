@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from . forms import *
 from django.http import *
+import sendgrid
+from sendgrid.helpers.mail import Mail, Email, To, Content
+ENDGRID_API_KEY = ('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')
 
 def home(reqest):
     context = {
@@ -19,6 +22,21 @@ def post_create(request):
         content = request.POST.get('content')
         post = Post(title=title, content=content, author= request.user)
         post.save()
+
+        sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
+        username = request.user.username
+        user = User.objects.get(username=username)
+        subscribers = user.profile.subscribed_by.all()
+
+        subject = 'new post by {}'.format(username)
+        content = '{} just created a new post. check it out'.format(username)
+        to_emails = []
+        from_email = Email('adityat1103@gmail.com')
+        for subscriber in subscribers:
+			to_emails.append(str(subscriber.user.email))
+        mail = Mail(from_email, to_emails, subject, content)
+        response = sg.send(mail)    
+
         return redirect('blog-home')
     else:
         form =  create_post_form()
