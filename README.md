@@ -67,4 +67,4 @@ Basically, don't share any data that must be kept secret.
 
 *Assignment compiled by [hypro999](https://github.com/hypro999) from DVM*
 
-##Currently, my feed isn't available. Email notifications work but you can't opt out from them.
+## Currently, my feed isn't available. Email notifications work but you can't opt out from them.
