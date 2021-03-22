@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from . forms import *
+from django.http import *
 
 def home(reqest):
     context = {
@@ -38,7 +39,7 @@ def post_update(request, *args, **kwargs):
                 'content': post.content
             })    
     else:
-        return #something idk what
+        return HttpResponse('''you cannot update someone else's post ''')
     return render(request, 'blog/post_update.html', {'form':form})          
 
 @login_required
@@ -50,10 +51,10 @@ def post_delete(request, *args, **kwargs):
             post.delete()
             return redirect('blog-home')
     else:
-        return #something idk what
+        return HttpResponse('''you cannot delete someone else's post''')
     return render(request, 'blog/post_delete.html', {'post': post})
 
-@login_required #hmmm
+@login_required 
 def post_detail(request, *args, **kwargs):
     form = comment_form()
     posts = Post.objects.filter(id=kwargs['pk'])
@@ -69,7 +70,7 @@ def post_detail(request, *args, **kwargs):
         form
     return render(request, 'blog/post_detail.html', context)          
 
-@login_required #hmm #ummm
+@login_required
 def user_posts(request, *args, **kwargs):
     user = User.objects.get(id=kwargs['pk'])
     posts = Post.objects.filter(author = user)
