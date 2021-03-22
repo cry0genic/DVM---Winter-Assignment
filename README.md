@@ -66,3 +66,5 @@ Basically, don't share any data that must be kept secret.
 **Hint**: Make a python file where you store all of these values as variables (sort of like C/C++ macros in a header file), then add this file to your gitignore. Generally, we prefer to call that file the keyconfig.
 
 *Assignment compiled by [hypro999](https://github.com/hypro999) from DVM*
+
+##Currently, my feed isn't available. Email notifications work but you can't opt out from them.

@@ -57,6 +57,21 @@ def unfollow_user(request, *args, **kwargs):
     profile.save()
     return redirect('blog-home')
 
+# @login_required
+# def my_feed(request, **kwargs):
+#     user = User.objects.get(id=kwargs['pk'])
+#     followed = user.profile.follows.all()
+#     posts = []
+#     for follow in followed:
+#         u_posts = Post.objects.filter(author_id=follow.id)
+#         for u_post in u_posts:
+#             posts.append(u_post)
+#     context = {
+#         'posts': posts
+#     }
+#     return(render, 'users/my_feed.html', context)
+
+
 @login_required
 def my_feed(request):
     posts = Post.objects.all()
@@ -65,36 +80,37 @@ def my_feed(request):
         'posts':posts,
         'profiles':profiles
     }
-    return render(request, 'users/my_feed.html', context)
+    return render(request, 'users/my_feed.html', context) 
 
+@login_required
 @permission_required('GET') 
 def get_data(request):
-	response = HttpResponse(content_type='application/ms-excel')
-	response['Content-Disposition'] = 'attachment; filename="profile_data.xlsx"'
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="profile_data.xlsx"'
 
-	wb = openpyxl.Workbook()
-	ws = wb.active
-	ws.title = 'Profile Data'
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = 'Profile Data'
 
-	profiles = Profile.objects.all()
-	row_data = [
-		['Profile ID', 'Username', 'E-mail', 'Following']
-	]
-	for profile in profiles:
-		following_profiles = profile.follows.all()
-		followed_usernames = []
-		for following_profile in following_profiles:
-			followed_usernames.append(following_profile.user.username)
-		followed_usernames_str = ','.join(followed_usernames)
+    profiles = Profile.objects.all()
+    row_data = [
+        ['Profile ID', 'Username', 'E-mail', 'Following']
+    ]
+    for profile in profiles:
+        following_profiles = profile.follows.all()
+        followed_usernames = []
+        for following_profile in following_profiles:
+            followed_usernames.append(following_profile.user.username)
+        followed_usernames_str = ','.join(followed_usernames)
 
-		row = [profile.id, profile.user.username, profile.user.email, followed_usernames_str]
-		row_data.append(row)
+        row = [profile.id, profile.user.username, profile.user.email, followed_usernames_str]
+        row_data.append(row)
 
-	for line in row_data:
-		ws.append(line)
+    for line in row_data:
+        ws.append(line)
 
-	wb.save(response)
-	return response
+    wb.save(response)
+    return response
 
 @login_required
 def add_subscription(request, *args, **kwargs):
@@ -104,9 +120,9 @@ def add_subscription(request, *args, **kwargs):
     return redirect('blog-home')
 
 @login_required
-def cancel_subscription(request, *args, **kwargs):
+def cancel_subscription(request, **kwargs):
     id = request.POST.get('post_author_profile_id')
     profile = Profile.objects.get(id=id)
-    request.user.profile.subscription.remove(profile)
-    return redirect('blog-home')    
+    request.user.profile.subscription.add(profile)
+    return redirect('blog-home')   
 

@@ -9,8 +9,6 @@ import sendgrid
 from sendgrid.helpers.mail import Mail, Email, To, Content
 from winter_assignment import keyconfig
 
-SENSENDGRID_API_KEY = ('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')
-
 def home(reqest):
     context = {
         'posts': Post.objects.all().order_by('-date_posted')

@@ -8,7 +8,7 @@
     <div class="article-metadata">
         <a class="mr-2">{{ blog_of_user.username }}</a><br>
         <a class="mr-2">{{ blog_of_user.email }}</a><br>
-        {% if user != posts.first.author %}
+    {% if user != posts.first.author %}
 		{% if posts.first.author.profile in user.profile.follows.all %}
 			<form action="{% url 'unfollow-user' %}" method="POST">
 				{% csrf_token %}
@@ -19,8 +19,8 @@
 					{% csrf_token %}
 					<button type="submit" name="post_author_profile_id" value="{{ posts.first.author.profile.id }}" >Follow </button>
 				</form> <br>
-			{% endif %}
-			{% if posts.first.author.profile in user.profile.follows.all%}
+		{% endif %}
+		{% if posts.first.author.profile in user.profile.follows.all%}
 			{% if posts.first.author.profile in user.profile.subscribed_to.all %}
 				<form action="{% url 'unsub-user' %}" method="POST">
 					{% csrf_token %}
@@ -33,9 +33,7 @@
 				</form>
 			{% endif %}
 		{% endif %}
-
-		
-	{% endif %}
+	{% endif %} 
         
     </div>
 </article>
