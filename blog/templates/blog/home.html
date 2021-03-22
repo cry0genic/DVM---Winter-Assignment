@@ -1,16 +1,7 @@
 {% extends "blog/base.html"%}
 {% block content %}
 {% if user.is_authenticated %}
-<a class="btn btn-outline-info mt-2 mb-1 " href="{% url 'post-create' %}">
-    <h2><b>New Post</b></h2>
-</a>
 
-</a>
-<a class="btn btn-outline-info mt-2 mb-1 ml-5 " href="{% url 'my-feed' %}">
-    <h2><b>My Feed</b></h2>
-</a>
-
-</a>
 <hr>
 {% for post in posts%}
 <article class=" media content-section">

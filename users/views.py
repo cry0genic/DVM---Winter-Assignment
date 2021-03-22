@@ -11,6 +11,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your account has been created. You can now login!')
             return redirect('login')
     else:
         form = UserRegisterForm()
@@ -43,6 +44,7 @@ def follow_user(request, *args, **kwargs):
     id = request.POST.get('post_author_profile_id')
     profile = Profile.objects.get(id=id)
     profile.followed_by.add(request.user.profile)
+    profile.save()
     return redirect('blog-home')
 
 @login_required
@@ -50,6 +52,7 @@ def unfollow_user(request, *args, **kwargs):
     id = request.POST.get('post_author_profile_id')
     profile = Profile.objects.get(id=id)
     profile.followed_by.remove(request.user.profile)
+    profile.save()
     return redirect('blog-home')
 
 @login_required
