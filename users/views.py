@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import *
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
+from blog.models import *
+from . models import *
+import openpyxl
 
 def register(request):
     if request.method == 'POST':
@@ -35,4 +38,57 @@ def profile(request):
     context = {"u_form": u_form, "p_form": p_form}
     return render(request, "users/profile.html", context)
 
-#follow user    
+@login_required
+def follow_user(request, *args, **kwargs):
+    id = request.POST.get('post_author_profile_id')
+    profile = Profile.objects.get(id=id)
+    profile.followed_by.add(request.user.profile)
+    return redirect('blog-home')
+
+@login_required
+def unfollow_user(request, *args, **kwargs):
+    id = request.POST.get('post_author_profile_id')
+    profile = Profile.objects.get(id=id)
+    profile.followed_by.remove(request.user.profile)
+    return redirect('blog-home')
+
+@login_required
+def my_feed(request):
+    posts = Post.objects.all()
+    profiles = request.user.profile.follows.all()
+    context = {
+        'posts':posts,
+        'profiles':profiles
+    }
+    return render(request, 'users/my_feed.html', context)
+
+@permission_required('GET') 
+def get_data(request):
+	response = HttpResponse(content_type='application/ms-excel')
+	response['Content-Disposition'] = 'attachment; filename="profile_data.xlsx"'
+
+	wb = openpyxl.Workbook()
+	ws = wb.active
+	ws.title = 'Profile Data'
+
+	profiles = Profile.objects.all()
+	row_data = [
+		['Profile ID', 'Username', 'E-mail', 'Following']
+	]
+	for profile in profiles:
+		following_profiles = profile.follows.all()
+		followed_usernames = []
+		for following_profile in following_profiles:
+			followed_usernames.append(following_profile.user.username)
+		followed_usernames_str = ','.join(followed_usernames)
+
+		row = [profile.id, profile.user.username, profile.user.email, followed_usernames_str]
+		row_data.append(row)
+
+	for line in row_data:
+		ws.append(line)
+
+	wb.save(response)
+	return response
+
+#oauth baki hai bas ab templates k sath

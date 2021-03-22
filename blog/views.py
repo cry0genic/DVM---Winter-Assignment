@@ -21,7 +21,7 @@ def post_create(request):
         return redirect('blog-home')
     else:
         form =  create_post_form()
-    return render(request, 'blog/post_create.html', {'form':form})    
+    return render(request, 'blog/post_create.html', {'form':form})     
 
 @login_required
 def post_update(request, *args, **kwargs):
@@ -51,7 +51,7 @@ def post_delete(request, *args, **kwargs):
             return redirect('blog-home')
     else:
         return #something idk what
-    return render(request, 'blog/post_confirm_delete.html', {'post': post})
+    return render(request, 'blog/post_delete.html', {'post': post})
 
 @login_required #hmmm
 def post_detail(request, *args, **kwargs):

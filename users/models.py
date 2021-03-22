@@ -5,6 +5,7 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
+    follows = models.ManyToManyField('users.Profile', related_name='followed_by')
 
     def __str__(self):
         return '{}\'s Profile!'.format(self.user.username)
