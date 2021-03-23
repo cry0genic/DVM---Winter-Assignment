@@ -21,7 +21,7 @@
 				</form> <br>
 		{% endif %}
 		{% if posts.first.author.profile in user.profile.follows.all%}
-			{% if posts.first.author.profile in user.profile.subscribed_to.all %}
+			{% if posts.first.author.profile in user.profile.subscription.all %}
 				<form action="{% url 'unsub-user' %}" method="POST">
 					{% csrf_token %}
 					<button type="submit" name="post_author_profile_id" value="{{ posts.first.author.profile.id }}" class="btn btn-primary">Unsubscribe</button>
