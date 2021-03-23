@@ -120,9 +120,9 @@ def add_subscription(request, *args, **kwargs):
     return redirect('blog-home')
 
 @login_required
-def cancel_subscription(request, **kwargs):
+def cancel_subscription(request, *args, **kwargs):
     id = request.POST.get('post_author_profile_id')
     profile = Profile.objects.get(id=id)
-    request.user.profile.subscription.add(profile)
+    request.user.profile.subscription.remove(profile)
     return redirect('blog-home')   
 
