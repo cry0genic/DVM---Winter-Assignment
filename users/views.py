@@ -57,21 +57,6 @@ def unfollow_user(request, *args, **kwargs):
     profile.save()
     return redirect('blog-home')
 
-# @login_required
-# def my_feed(request, **kwargs):
-#     user = User.objects.get(id=kwargs['pk'])
-#     followed = user.profile.follows.all()
-#     posts = []
-#     for follow in followed:
-#         u_posts = Post.objects.filter(author_id=follow.id)
-#         for u_post in u_posts:
-#             posts.append(u_post)
-#     context = {
-#         'posts': posts
-#     }
-#     return(render, 'users/my_feed.html', context)
-
-
 @login_required
 def my_feed(request):
     posts = Post.objects.all()
@@ -115,14 +100,14 @@ def get_data(request):
 @login_required
 def add_subscription(request, *args, **kwargs):
     id = request.POST.get('post_author_profile_id')
-    profile = Profile.objects.get(id=id)
-    request.user.profile.subscription.add(profile)
+    prof = Profile.objects.get(id=id)
+    request.user.profile.subscription.add(prof)
     return redirect('blog-home')
 
 @login_required
 def cancel_subscription(request, *args, **kwargs):
     id = request.POST.get('post_author_profile_id')
-    profile = Profile.objects.get(id=id)
-    request.user.profile.subscription.remove(profile)
+    prof = Profile.objects.get(id=id)
+    request.user.profile.subscription.remove(prof)
     return redirect('blog-home')   
 
