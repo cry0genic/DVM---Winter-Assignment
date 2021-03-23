@@ -6,10 +6,10 @@ FROM_EMAIL = 'adityat1103@gmail.com'
 
 DB_NAME = 'winter'
 
-DB_USER = 'postgres'
+DB_USER = 'admin'
 
 DB_PWD = 'testing321'
 
 DB_HOST = 'localhost'
 
-DB_PORT = '5432'
+DB_PORT = ''
