@@ -85,23 +85,23 @@ WSGI_APPLICATION = 'winter_assignment.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': keyconfig.DB_NAME,
-#         'USER': keyconfig.DB_USER,
-#         'PASSWORD': keyconfig.DB_PWD,
-#         'HOST': keyconfig.DB_HOST,
-#         'PORT': keyconfig.DB_PORT,
-#     } 
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': keyconfig.DB_NAME,
+        'USER': keyconfig.DB_USER,
+        'PASSWORD': keyconfig.DB_PWD,
+        'HOST': keyconfig.DB_HOST,
+        'PORT': keyconfig.DB_PORT,
+    } 
+}
 
 AUTHENTICATION_BACKENDS = [
     
