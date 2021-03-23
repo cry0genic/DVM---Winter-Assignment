@@ -45,7 +45,7 @@ Finally, you'll be hosting your project on the internet.
   - [x] 2. Using the GitHub student pack, sign up on [Digital Ocean](https://m.do.co/c/9667283a00b2) to be able to get your own VPS (Virtual Private Server). Note the hyperlink I provided you with is my referal link.
   - [x] 3. Create an Ubuntu 16.04 or 18.04 server and then host your Django application. You'll find this [tutorial](http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/) **extremely** useful, and of course, google stuff to atleast roughly figure out what you're doing at each step of the tutorial. It will probably take some time and experience before you know what you're *exactly* doing at each step.
 
-  - [ ] #### Phase 4: Celebrate the completion of your project with a treat from your seniors back on campus :D
+#### Phase 4: Celebrate the completion of your project with a treat from your seniors back on campus :D
 
 ### Time Alloted
   - Phase 1 - 7 Days
