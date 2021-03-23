@@ -15,5 +15,5 @@ urlpatterns = [
 	path('sub-user/', views.add_subscription, name='sub-user'),
 	path('unsub-user/', views.cancel_subscription, name='unsub-user'),
     path('get-data/', views.get_data, name='get_data'),
-    #path('my-feed/', views.my_feed, name='my-feed'),  
+    path('my-feed/', views.my_feed, name='my-feed'),  
 ]

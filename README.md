@@ -41,11 +41,11 @@ Now you will extend the basic project you created by adding some cool features w
 #### Phase 3: Time To Go Live!
 You'll learn about more than programming here. Now you'll be introduced to the concept of tech stacks, Linux server administration and a bunch of other cool stuff.
 Finally, you'll be hosting your project on the internet.
-1. Read up on web servers and what they are. Hint: Don't get confused between the hardware and software parts. The word "server" can refer to either one - there is the physical machine which you will be "renting" and then there is the server software that you'll be running which actually manages all of the requests e.g. Nginx or Apache.
-2. Using the GitHub student pack, sign up on [Digital Ocean](https://m.do.co/c/9667283a00b2) to be able to get your own VPS (Virtual Private Server). Note the hyperlink I provided you with is my referal link.
-3. Create an Ubuntu 16.04 or 18.04 server and then host your Django application. You'll find this [tutorial](http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/) **extremely** useful, and of course, google stuff to atleast roughly figure out what you're doing at each step of the tutorial. It will probably take some time and experience before you know what you're *exactly* doing at each step.
+  - [x] 1. Read up on web servers and what they are. Hint: Don't get confused between the hardware and software parts. The word "server" can refer to either one - there is the physical machine which you will be "renting" and then there is the server software that you'll be running which actually manages all of the requests e.g. Nginx or Apache.
+  - [x] 2. Using the GitHub student pack, sign up on [Digital Ocean](https://m.do.co/c/9667283a00b2) to be able to get your own VPS (Virtual Private Server). Note the hyperlink I provided you with is my referal link.
+  - [x] 3. Create an Ubuntu 16.04 or 18.04 server and then host your Django application. You'll find this [tutorial](http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/) **extremely** useful, and of course, google stuff to atleast roughly figure out what you're doing at each step of the tutorial. It will probably take some time and experience before you know what you're *exactly* doing at each step.
 
-#### Phase 4: Celebrate the completion of your project with a treat from your seniors back on campus :D
+  - [ ] #### Phase 4: Celebrate the completion of your project with a treat from your seniors back on campus :D
 
 ### Time Alloted
   - Phase 1 - 7 Days
@@ -53,7 +53,7 @@ Finally, you'll be hosting your project on the internet.
   - Phase 3 - 3 Days
 
 ### Submission Rules
-***Securely*** share the source code on GitHub under your own account.  
+  - [x] ***Securely*** share the source code on GitHub under your own account.  
 
 What Securely means:
   1. Don't share the Django secret key.
@@ -67,4 +67,4 @@ Basically, don't share any data that must be kept secret.
 
 *Assignment compiled by [hypro999](https://github.com/hypro999) from DVM*
 
-#### Currently, my feed isn't available. Email notifications work but you can't opt out from them.
+#### Currently, email notifications work but you can't opt out from them.
