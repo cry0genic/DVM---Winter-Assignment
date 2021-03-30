@@ -1,29 +1,29 @@
-# Use the official Python image from the Docker Hub
 FROM python:3.8.2
 
-# These two environment variables prevent __pycache__/ files.
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONBUFFERED 1
+ENV PYTHONWRITEBYTECODE 1
 
-# Make a new directory to put our code in.
-RUN mkdir /code
+RUN apt-get update \
+    && apt-get install -y netcat
 
-# Change the working directory. 
-# Every command after this will be run from the /code directory.
-WORKDIR /code
+# Create an app user in the app group. 
+RUN useradd --user-group --create-home --no-log-init --shell /bin/bash app
 
-# Copy the requirements.txt file.
-COPY ./requirements.txt /code/
+ENV APP_HOME=/home/app/web
 
-# Upgrade pip
+# Create the staticfiles directory. This avoids permission errors. 
+RUN mkdir -p $APP_HOME/staticfiles
+
+# Change the workdir.
+WORKDIR $APP_HOME    
+
+COPY requirements.txt $APP_HOME
 RUN pip install --upgrade pip
-
-# Install the requirements.
 RUN pip install -r requirements.txt
 
-# Copy the rest of the code. 
-COPY . /code/
+COPY . $APP_HOME
+RUN chown -R app:app $APP_HOME
 
-RUN apt-get update && apt-get install -y netcat
- 
-ENTRYPOINT ["/code/entrypoint.sh"]
+USER app:app
+
+ENTRYPOINT ["/home/app/web/entrypoint.sh"]
