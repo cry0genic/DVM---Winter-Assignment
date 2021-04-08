@@ -8,7 +8,7 @@ DB_NAME = 'winterA'
 
 DB_USER = 'myprojectuser'
 
-DB_PWD = 'testing321'
+DB_PWD = 'password'
 
 DB_HOST = 'localhost'
 
