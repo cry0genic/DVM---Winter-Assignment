@@ -27,7 +27,7 @@ SECRET_KEY = keyconfig.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['165.232.178.1','127.0.0.1','localhost','idkwhybutzodiac.rocks','165.232.178.1']
+ALLOWED_HOSTS = ['104.236.69.251','127.0.0.1','localhost','idkwhybutzodiac.rocks']
 
 
 # Application definition
