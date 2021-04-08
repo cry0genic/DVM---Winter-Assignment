@@ -4,9 +4,9 @@ SENSENDGRID_API_KEY = ('SG.sWKVW3B7RXyouqjsvMPxnQ.atPwae1HxD4jvg4DCLqoXhtibsltYQ
 
 FROM_EMAIL = 'adityat1103@gmail.com'
 
-DB_NAME = 'winter'
+DB_NAME = 'winterA'
 
-DB_USER = 'admin'
+DB_USER = 'myprojectuser'
 
 DB_PWD = 'testing321'
 
