@@ -29,7 +29,7 @@ services:
     image: nginx:mainline-alpine
     restart: always
     ports:
-      - 80:1337
+      - 1337:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - staticfiles:/home/app/web/staticfiles
