@@ -93,13 +93,9 @@ WSGI_APPLICATION = 'winter_assignment.wsgi.application'
 # }
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": Database.NAME,
-        "USER": Database.USER,
-        "PASSWORD": Database.PASSWORD,
-        "HOST": Database.HOST,
-        "PORT": Database.PORT,
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
