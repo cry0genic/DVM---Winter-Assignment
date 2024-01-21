@@ -23,21 +23,8 @@ def post_create(request):
         post = Post(title=title, content=content, author= request.user)
         post.save()
 
-        sg = sendgrid.SendGridAPIClient(api_key=keyconfig.SENSENDGRID_API_KEY)
         username = request.user.username
         user = User.objects.get(username=username)
-        subscribers = user.profile.subscribed_by.all()
-        if subscribers:
-            subject = 'new post by {}'.format(username)
-            content = '{} just created a new post. check it out'.format(username)
-            to_emails = []
-            from_email = Email(keyconfig.FROM_EMAIL)
-            for subscriber in subscribers:
-                to_emails.append(str(subscriber.user.email))
-            mail = Mail(from_email, to_emails, subject, content)
-            response = sg.send(mail)    
-        else:
-            return redirect('blog-home')
         return redirect('blog-home')
     else:
         form =  create_post_form()
